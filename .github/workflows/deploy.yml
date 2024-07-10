@@ -15,10 +15,10 @@ jobs:
       - name: Build and deploy
         uses: actions/checkout@v4
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.SSH_HOST }}
-          REMOTE_USER: ${{ secrets.USER_NAME }}
-          SCRIPT_AFTER: |
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-known-hosts: ${{ secrets.SSH_HOST }}
+          ssh-user: ${{ secrets.USER_NAME }}
+      - run: |
             cd /home/ubuntu/workit
             git checkout main
             git fetch --all
