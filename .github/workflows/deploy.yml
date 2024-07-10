@@ -14,16 +14,19 @@ jobs:
     steps:
       - name: Build and deploy
         uses: actions/checkout@v4
-        with:
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh-known-hosts: ${{ secrets.SSH_HOST }}
-          ssh-strict: 'false'
-          ssh-user: ${{ secrets.USER_NAME }}
-
+        env:
+            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            HOSTNAME: ${{secrets.SSH_HOST}}
+            USER_NAME: ${{secrets.USER_NAME}}
+      
       - run: |
-          echo "Deploying"
-          cd /home/ubuntu/workit
-          git checkout main
-          git fetch --all
-          git reset --hard origin/main
-          git pull origin main
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+
+              # Now we have got the access of EC2 and we will start the deploy .
+              cd /home/ubuntu/workig &&
+              git checkout main &&
+              git fetch --all &&
+              git reset --hard origin/main &&
+              git pull origin main
+              '
