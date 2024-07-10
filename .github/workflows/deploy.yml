@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3  # This will automatically use Node.js 20 when required
+      - uses: actions/checkout@v4  # This will automatically use Node.js 20 when required
 
       - name: Build and deploy
         env:
