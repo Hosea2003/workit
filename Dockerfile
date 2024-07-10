@@ -13,6 +13,6 @@ COPY . /app/
 # collect static file
 RUN python manage.py collectstatic --no-input
 
-COPY staticfiles /app/staticfiles
+COPY staticfiles /app/
 
 RUN python manage.py migrate
