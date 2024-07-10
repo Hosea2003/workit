@@ -15,6 +15,7 @@ jobs:
       - name: Build and deploy
         uses: actions/checkout@v4
         with:
+          repository: ${{ secrets.REPO }}
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh-known-hosts: ${{ secrets.SSH_HOST }}
           ssh-user: ${{ secrets.USER_NAME }}
