@@ -1,0 +1,17 @@
+# environement
+venv
+
+# cache
+__pycache__
+
+# mediat
+media
+
+# static files
+staticfiles
+
+# database
+*.sqlite3
+
+# variables
+.env
