@@ -12,16 +12,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build and deploy
+      - name: Checkout file
         uses: actions/checkout@v4
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.USER_NAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}
+          
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
         with:
-          repository: Hosea2003/workit
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh-known-hosts: ${{ secrets.SSH_HOST }}
-          ssh-user: ${{ secrets.USER_NAME }}
-      - run: |
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
             cd /home/ubuntu/workit
-            git checkout main
-            git fetch --all
-            git reset --hard origin/main
-            git pull origin main
+            sudo ./deploy.sh
