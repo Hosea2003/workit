@@ -14,4 +14,4 @@ CSRF_TRUSTED_ORIGINS = [
     # "localhost",
 ]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
