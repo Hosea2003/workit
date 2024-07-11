@@ -8,9 +8,14 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
+# Install PostgreSQL client to use pg_isready
+RUN apk update && apk add postgresql-client
+
+# entrypoint
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+
 COPY . /app/
 
-# collect static file
-RUN python manage.py collectstatic --no-input
-
-RUN python manage.py migrate
+# run entrypoint
+ENTRYPOINT ["sh",  "/app/entrypoint.sh" ]

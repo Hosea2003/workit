@@ -15,3 +15,5 @@ staticfiles
 
 # variables
 .env
+
+local-compose.yml
