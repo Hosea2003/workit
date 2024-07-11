@@ -11,7 +11,7 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://3.129.128.0",
     "https://ec2-3-129-128-0.us-east-2.compute.amazonaws.com",
-    # "localhost",
+    "http://localhost",
 ]
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
