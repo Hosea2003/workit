@@ -10,8 +10,4 @@ then
 fi
 
 python manage.py migrate
-
-# run collectstatic
-python manage.py collectstatic --no-input
-
 exec "$@"
