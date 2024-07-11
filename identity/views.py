@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
@@ -20,3 +20,8 @@ def login_view(request: HttpRequest):
         return redirect("dashboard")
 
     return render(request, "auth/login.html")
+
+
+def logout_view(request:HttpRequest):
+    logout(request)
+    return redirect("login")
