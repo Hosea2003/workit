@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -17,11 +17,12 @@ def login_view(request: HttpRequest):
                 context={"error": "Email ou Mot de passe incorrect"},
             )
         login(request, user)
-        return redirect("dashboard")
+        next_url = request.GET.get("next", "/")
+        return HttpResponseRedirect(next_url)
 
     return render(request, "auth/login.html")
 
 
-def logout_view(request:HttpRequest):
+def logout_view(request: HttpRequest):
     logout(request)
     return redirect("login")
