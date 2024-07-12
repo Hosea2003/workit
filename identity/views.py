@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from api.decorators import workit_staff
-from identity.forms import ProfileForm
+from identity.forms import ChangePasswordForm, ProfileForm
 from django.utils.translation import gettext_lazy as _
 
 from identity.models import WorkitUser
@@ -51,4 +51,18 @@ def profile_user(request: HttpRequest):
         request,
         "auth/profile.html",
         context={"form": update_profile_form, "message": message},
+    )
+
+
+@workit_staff
+def change_password(request: HttpRequest):
+    form = ChangePasswordForm()
+
+    if request.method == "POST":
+        form = ChangePasswordForm(request.POST, instance=request.user)
+        if form.is_valid():
+            return redirect("my-profile")
+        errors = form.errors.as_data()
+    return render(
+        request, "auth/change_password.html", context={"form": form, "error": errors}
     )
