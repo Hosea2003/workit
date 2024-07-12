@@ -228,7 +228,7 @@
             >
               <div class="avatar-sm">
                 <img
-                  src="{% static 'assets/img/profile.jpg'%}"
+                  src="{{request.user.public_image}}"
                   alt="..."
                   class="avatar-img rounded-circle"
                 />
@@ -244,7 +244,7 @@
                   <div class="user-box">
                     <div class="avatar-lg">
                       <img
-                        src="{% static 'assets/img/profile.jpg'%}"
+                        src="{{request.user.public_image}}"
                         alt="image profile"
                         class="avatar-img rounded"
                       />
@@ -253,7 +253,7 @@
                       <h4>{{request.user.first_name}} {{request.user.last_name}}</h4>
                       <p class="text-muted">{{request.user.email}}</p>
                       <a
-                        href="profile.html"
+                        href="{%url 'my-profile'%}"
                         class="btn btn-xs btn-secondary btn-sm"
                         >Voir Profil</a
                       >
@@ -262,7 +262,7 @@
                 </li>
                 <li>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Mon Profil</a>
+                  <a class="dropdown-item" href="{%url 'my-profile'%}">Mon Profil</a>
                   <!-- <a class="dropdown-item" href="#">Inbox</a> -->
                   <!-- <div class="dropdown-divider"></div> -->
                   <div class="dropdown-divider"></div>

@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # app
     "identity",
+    # third party
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [
