@@ -1,16 +1,13 @@
 from .settings import *
 
+HOST = os.getenv("HOST")
+
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    "3.129.128.0",
-    "ec2-3-129-128-0.us-east-2.compute.amazonaws.com",
-    "localhost",
-]
+ALLOWED_HOSTS = ["localhost", HOST]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://3.129.128.0",
-    "https://ec2-3-129-128-0.us-east-2.compute.amazonaws.com",
+    f"http://{HOST}",
     "http://localhost",
 ]
 
