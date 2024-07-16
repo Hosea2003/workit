@@ -46,6 +46,7 @@ def profile_user(request: HttpRequest):
                 user.profile_image = request.FILES.get("profile_image")
             user.save()
             message = _("Enregistrer avec succès")
+            return redirect("my-profile")
 
     return render(
         request,
