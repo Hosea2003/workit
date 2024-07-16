@@ -2,7 +2,7 @@ from .settings import *
 
 HOST = os.getenv("HOST")
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", HOST]
 
